@@ -5,10 +5,16 @@ struct ContentView: View {
     @State private var scale: CGFloat = 1.0
     @State private var offset = CGSize.zero
 
+    @State private var progressingOffset = CGSize.zero
+
     var dragGesture: some Gesture {
         DragGesture()
             .onChanged { value in
-                self.offset = value.translation
+                progressingOffset = value.translation
+            }
+            .onEnded { value in
+                offset = sum(value.translation, offset)
+                progressingOffset = .zero
             }
     }
 
@@ -23,10 +29,14 @@ struct ContentView: View {
         ZStack {
             Image(uiImage: uiimage)
                 .scaleEffect(scale)
-                .offset(offset)
+                .offset(sum(offset, progressingOffset))
         }
         .gesture(dragGesture)
         .simultaneousGesture(scaleGesture)
+    }
+
+    func sum(_ a: CGSize, _ b: CGSize) -> CGSize {
+        return CGSize(width: a.width + b.width, height: a.height + b.height)
     }
 }
 
