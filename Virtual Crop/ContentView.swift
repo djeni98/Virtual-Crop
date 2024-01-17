@@ -5,6 +5,7 @@ struct ContentView: View {
     @State private var scale: CGFloat = 1.0
     @State private var offset = CGSize.zero
 
+    @State private var progressingScale: CGFloat = 1.0
     @State private var progressingOffset = CGSize.zero
 
     var dragGesture: some Gesture {
@@ -21,14 +22,18 @@ struct ContentView: View {
     var scaleGesture: some Gesture {
         MagnificationGesture()
             .onChanged { value in
-                self.scale = value.magnitude
+                progressingScale = value.magnitude
+            }
+            .onEnded { value in
+                scale *= value
+                progressingScale = 1.0
             }
     }
 
     var body: some View {
         ZStack {
             Image(uiImage: uiimage)
-                .scaleEffect(scale)
+                .scaleEffect(scale * progressingScale)
                 .offset(sum(offset, progressingOffset))
         }
         .gesture(dragGesture)
