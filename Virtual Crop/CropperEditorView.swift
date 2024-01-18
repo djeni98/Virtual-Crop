@@ -46,8 +46,16 @@ struct CropperEditorView: View {
                         Color.gray.opacity(0).onAppear {
                             aspectFitImageSize = g.size
 
-                            scale = input.scale / aspectFitScale
-                            offset = input.offset
+                            if let inputScale = input.scale {
+                                scale = inputScale / aspectFitScale
+                            }
+
+                            if let inputOffset = input.offset {
+                                offset = inputOffset
+                            }
+
+                            output.scale = scale * aspectFitScale
+                            output.offset = offset
                         }
                     }
                 )
@@ -73,10 +81,10 @@ struct CropperEditorView: View {
 extension CropperEditorView {
     struct Input {
         var uiimage: UIImage
-        var scale: CGFloat
-        var offset: CGSize
+        var scale: CGFloat?
+        var offset: CGSize?
 
-        static func from(_ uiimage: UIImage, scale: CGFloat = 1, offset: CGSize = CGSize.zero) -> Self {
+        static func from(_ uiimage: UIImage, scale: CGFloat? = nil, offset: CGSize? = nil) -> Self {
             return Self(uiimage: uiimage, scale: scale, offset: offset)
         }
     }
