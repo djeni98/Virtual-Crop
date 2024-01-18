@@ -58,7 +58,7 @@ struct CropperEditorView: View {
         .gesture(dragGesture)
         .simultaneousGesture(scaleGesture)
         .onChange(of: scale) { value in
-            output.scale = scale
+            output.scale = scale * aspectFitScale
         }
         .onChange(of: offset) { value in
             output.offset = offset
