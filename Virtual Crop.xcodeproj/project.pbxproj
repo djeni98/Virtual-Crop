@@ -12,6 +12,7 @@
 		B7B6A6622B1F6FF4002FB3EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7B6A6612B1F6FF4002FB3EB /* Assets.xcassets */; };
 		B7B6A6652B1F6FF4002FB3EB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7B6A6642B1F6FF4002FB3EB /* Preview Assets.xcassets */; };
 		B7DC14FB2B58546600E15AA2 /* CropperEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7DC14FA2B58546600E15AA2 /* CropperEditorView.swift */; };
+		B7F6ADD52B594CDB00879C2D /* VisualizerAndCropperEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7F6ADD42B594CDB00879C2D /* VisualizerAndCropperEditorView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +22,7 @@
 		B7B6A6612B1F6FF4002FB3EB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B7B6A6642B1F6FF4002FB3EB /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		B7DC14FA2B58546600E15AA2 /* CropperEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropperEditorView.swift; sourceTree = "<group>"; };
+		B7F6ADD42B594CDB00879C2D /* VisualizerAndCropperEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualizerAndCropperEditorView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 				B7B6A65D2B1F6FF3002FB3EB /* Virtual_CropApp.swift */,
 				B7B6A65F2B1F6FF3002FB3EB /* ContentView.swift */,
 				B7DC14FA2B58546600E15AA2 /* CropperEditorView.swift */,
+				B7F6ADD42B594CDB00879C2D /* VisualizerAndCropperEditorView.swift */,
 				B7B6A6612B1F6FF4002FB3EB /* Assets.xcassets */,
 				B7B6A6632B1F6FF4002FB3EB /* Preview Content */,
 			);
@@ -141,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7DC14FB2B58546600E15AA2 /* CropperEditorView.swift in Sources */,
+				B7F6ADD52B594CDB00879C2D /* VisualizerAndCropperEditorView.swift in Sources */,
 				B7B6A6602B1F6FF3002FB3EB /* ContentView.swift in Sources */,
 				B7B6A65E2B1F6FF3002FB3EB /* Virtual_CropApp.swift in Sources */,
 			);
