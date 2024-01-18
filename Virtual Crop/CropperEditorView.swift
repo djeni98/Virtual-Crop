@@ -37,8 +37,18 @@ struct CropperEditorView: View {
             }
     }
 
+    var twoTapsGesture: some Gesture {
+        TapGesture(count: 2)
+            .onEnded {
+                offset = .zero
+                scale = 1
+            }
+    }
+
     var body: some View {
         ZStack {
+            Color.gray
+
             Image(uiImage: input.uiimage)
                 .resizable()
                 .background(
@@ -65,6 +75,7 @@ struct CropperEditorView: View {
         }
         .gesture(dragGesture)
         .simultaneousGesture(scaleGesture)
+        .simultaneousGesture(twoTapsGesture)
         .onChange(of: scale) { value in
             output.scale = scale * aspectFitScale
         }
