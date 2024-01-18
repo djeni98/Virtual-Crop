@@ -8,6 +8,11 @@ struct CropperEditorView: View {
     @State private var progressingScale: CGFloat = 1.0
     @State private var progressingOffset = CGSize.zero
 
+    @State private var aspectFitImageSize = CGSize.zero
+    private var aspectFitScale: CGFloat {
+        aspectFitImageSize.width / uiimage.size.width
+    }
+
     var dragGesture: some Gesture {
         DragGesture()
             .onChanged { value in
@@ -33,8 +38,18 @@ struct CropperEditorView: View {
     var body: some View {
         ZStack {
             Image(uiImage: uiimage)
+                .resizable()
+                .background(
+                    GeometryReader { g in
+                        Color.gray.opacity(0).onAppear {
+                            aspectFitImageSize = g.size
+                            scale = scale / aspectFitScale
+                        }
+                    }
+                )
                 .scaleEffect(scale * progressingScale)
                 .offset(sum(offset, progressingOffset))
+                .aspectRatio(contentMode: .fit)
         }
         .gesture(dragGesture)
         .simultaneousGesture(scaleGesture)
