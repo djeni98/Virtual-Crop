@@ -1,16 +1,18 @@
 import SwiftUI
 
 struct CropperEditorView: View {
-    @Binding var uiimage: UIImage
-    @Binding var scale: CGFloat
-    @Binding var offset: CGSize
+    var input: CropperEditorView.Input
+    @Binding var output: CropperEditorView.Output
+
+    @State private var scale: CGFloat = 1.0
+    @State private var offset = CGSize.zero
 
     @State private var progressingScale: CGFloat = 1.0
     @State private var progressingOffset = CGSize.zero
 
     @State private var aspectFitImageSize = CGSize.zero
     private var aspectFitScale: CGFloat {
-        aspectFitImageSize.width / uiimage.size.width
+        aspectFitImageSize.width / input.uiimage.size.width
     }
 
     var dragGesture: some Gesture {
@@ -37,13 +39,15 @@ struct CropperEditorView: View {
 
     var body: some View {
         ZStack {
-            Image(uiImage: uiimage)
+            Image(uiImage: input.uiimage)
                 .resizable()
                 .background(
                     GeometryReader { g in
                         Color.gray.opacity(0).onAppear {
                             aspectFitImageSize = g.size
-                            scale = scale / aspectFitScale
+
+                            scale = input.scale / aspectFitScale
+                            offset = input.offset
                         }
                     }
                 )
@@ -53,9 +57,36 @@ struct CropperEditorView: View {
         }
         .gesture(dragGesture)
         .simultaneousGesture(scaleGesture)
+        .onChange(of: scale) { value in
+            output.scale = scale
+        }
+        .onChange(of: offset) { value in
+            output.offset = offset
+        }
     }
 
     func sum(_ a: CGSize, _ b: CGSize) -> CGSize {
         return CGSize(width: a.width + b.width, height: a.height + b.height)
     }
+}
+
+extension CropperEditorView {
+    struct Input {
+        var uiimage: UIImage
+        var scale: CGFloat
+        var offset: CGSize
+
+        static func from(_ uiimage: UIImage, scale: CGFloat = 1, offset: CGSize = CGSize.zero) -> Self {
+            return Self(uiimage: uiimage, scale: scale, offset: offset)
+        }
+    }
+
+    struct Output {
+        var scale: CGFloat
+        var offset: CGSize
+    }
+}
+
+#Preview {
+    VisualizerAndCropperEditorView()
 }

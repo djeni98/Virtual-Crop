@@ -1,13 +1,12 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var uiimage = UIImage(named: "image-900-500")!
-    @State private var scale: CGFloat = 1.0
-    @State private var offset = CGSize.zero
+    private let uiimage = UIImage(named: "image-900-500")!
+    @State private var info: CropperEditorView.Output = .init(scale: 1, offset: .zero)
 
     var body: some View {
         VStack {
-            CropperEditorView(uiimage: $uiimage, scale: $scale, offset: $offset)
+            CropperEditorView(input: .from(uiimage), output: $info)
         }
     }
 }
