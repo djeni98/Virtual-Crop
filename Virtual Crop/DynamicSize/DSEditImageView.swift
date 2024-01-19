@@ -38,6 +38,7 @@ struct DynamicSizeEditImageView: View {
 
         allImages[index].scale = output.scale
         allImages[index].offset = output.offset
+        allImages[index].cropperSize = size
 
         dismiss()
     }

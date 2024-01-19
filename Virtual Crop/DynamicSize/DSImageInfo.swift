@@ -5,4 +5,5 @@ struct DynamicSizeImageInfo: Identifiable {
     let uiimage: UIImage
     var scale: CGFloat?
     var offset: CGSize?
+    var cropperSize: CGSize? = nil
 }

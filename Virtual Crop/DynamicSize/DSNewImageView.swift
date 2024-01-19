@@ -35,7 +35,8 @@ struct DynamicSizeNewImageView: View {
     func save() {
         allImages.append(.init(uiimage: uiimage,
                                scale: output.scale,
-                               offset: output.offset))
+                               offset: output.offset,
+                               cropperSize: size))
 
         dismiss()
     }
