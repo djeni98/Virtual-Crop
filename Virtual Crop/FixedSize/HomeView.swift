@@ -17,12 +17,13 @@ struct FixedSizeHomeView: View {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 40) {
                     ForEach(imagesInfo) { info in
-                        NavigationLink(destination: Text("Edit")) {
+                        let destination = FixedSizeEditImageView(info: info, allImages: $imagesInfo)
+                        NavigationLink(destination: destination) {
                             FixedSizeImageVisualizerView(imageInfo: info)
                         }
                     }
 
-                    NavigationLink(destination: Text("Add New")) {
+                    NavigationLink(destination: FixedSizeNewImageView(allImages: $imagesInfo)) {
                         buttonAdd
                     }
 
